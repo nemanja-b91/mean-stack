@@ -10,6 +10,9 @@
 
 1. Clone the project
 2. Running backend: ``cd server && npm install && npm run dev``
-2. Running Admin: ``cd admin && ng serve``
-3. Running frontend: ``cd admin && ng serve -- port=6001``
+3. Running Admin: ``cd admin && ng serve``
+4. Running frontend: ``cd admin && ng serve -- port=6001``
+5. Or running all entire application in one command ```npm run dev``` which will start all three above.
+
+
 
