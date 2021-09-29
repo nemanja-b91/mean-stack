@@ -1,0 +1,15 @@
+<div class="user-information">
+  <div class="user-information__details" *ngIf="userData; else loading">
+    <h3>Welcome, {{userData.name}} [{{userData.role}}]</h3>
+    <h4>Your data:</h4>
+    <ul style="list-style-type: none;">
+      <li>City: {{userData.city}}</li>
+      <li>Country: {{userData.country}}</li>
+      <li>Email: {{userData.email}}</li>
+      <li>Phone: {{userData.phone}}</li>
+    </ul>
+  </div>
+  <ng-template #loading>
+    <p>Loading user data...</p>
+  </ng-template>
+</div>

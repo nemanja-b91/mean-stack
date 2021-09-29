@@ -1,0 +1,20 @@
+{
+  "name": "api-universal",
+  "version": "0.1.0",
+  "description": "Universal API with admin dashboard - Angular",
+  "scripts": {
+    "start:server": "cd server && npm run dev",
+    "start:dashboard": "cd admin && npm run start",
+    "start:web": "cd website && npm run start",
+    "dev": "concurrently \"npm run start:server\" \"npm run start:dashboard\" \"npm run start:web\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bacha024@bitbucket.org/bacha024/mean-stack.git"
+  },
+  "author": "Bacha",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

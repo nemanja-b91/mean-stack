@@ -1,0 +1,63 @@
+<div>
+  <nz-table #basicTable [nzFrontPagination]="false" [nzData]="allUsers">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>City (Country)</th>
+      <th>Created</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.phone }}</td>
+      <td>{{ data.city + ',' + data.country }}</td>
+      <td>{{ data.createdAt |  date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+      <td>
+        <nz-button-group>
+          <button nz-button nzType="primary" (click)="viewUserDetails(data._id)"><i nz-icon nzType="eye"></i></button>
+          <button *ngIf="!data.verified" nz-button nzType="primary" [nzLoading]="verifying" (click)="verifyUser(data.verification)"><i nz-icon nzType="check"></i></button>
+          <button nz-button nzType="primary" nzDanger (click)="deleteSpecificUser(data._id, data.name)">
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </nz-button-group>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-drawer [nzVisible]="visible" [nzWidth]="640" [nzClosable]="true" (nzOnClose)="closeDetails()">
+    <ng-container *nzDrawerContent>
+      <p class="title" style=" margin-bottom: 24px;">User Profile</p>
+      <nz-descriptions [nzColumn]="2" nzTitle="Personal">
+        <nz-descriptions-item nzTitle="Full Name" [nzSpan]="1">{{selectedUser.name}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Account" [nzSpan]="1">{{selectedUser.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="City" [nzSpan]="1">{{selectedUser.city}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Country" [nzSpan]="1">{{selectedUser.country}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Message" [nzSpan]="2">
+          {{selectedUser.message ? selectedUser.message : 'No information provided'}}
+        </nz-descriptions-item>
+      </nz-descriptions>
+      <nz-divider></nz-divider>
+      <nz-descriptions [nzColumn]="2" nzTitle="Role">
+        <nz-descriptions-item nzTitle="User role" [nzSpan]="2">{{selectedUser.role}}</nz-descriptions-item>
+      </nz-descriptions>
+      <nz-divider></nz-divider>
+      <nz-descriptions [nzColumn]="2" nzTitle="Contacts">
+        <nz-descriptions-item nzTitle="Email" [nzSpan]="1">{{selectedUser.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Phone Number" [nzSpan]="1">{{selectedUser.phone}}</nz-descriptions-item>
+        <nz-descriptions-item *ngIf="selectedUser.urlGitHub" nzTitle="Github" [nzSpan]="2">
+          <a href="{{selectedUser.urlGitHub}}" target="_blank">{{selectedUser.urlGitHub}}</a>
+        </nz-descriptions-item>
+        <nz-descriptions-item *ngIf="selectedUser.urlTwitter" nzTitle="Twitter" [nzSpan]="2">
+          <a href="{{selectedUser.urlTwitter}}" target="_blank">{{selectedUser.urlTwitter}}</a>
+        </nz-descriptions-item>
+      </nz-descriptions>
+    </ng-container>
+  </nz-drawer>
+</div>
+
+

@@ -1,0 +1,29 @@
+<div class="user-registration-wrapper">
+  <div class="form-group">
+    <input nz-input type="text" placeholder="Full Name" [(ngModel)]="newUserModel.name" />
+  </div>
+  <div class="form-group">
+    <input nz-input type="email" placeholder="Enter email" [(ngModel)]="newUserModel.email" />
+  </div>
+  <div class="form-group">
+    <input nz-input type="password" placeholder="Enter password" [(ngModel)]="newUserModel.password" />
+  </div>
+  <div class="form-group">
+    <nz-select nzPlaceHolder="Select user role" [(ngModel)]="newUserModel.role">
+      <nz-option nzLabel="Admin" nzValue="admin"></nz-option>
+      <nz-option nzLabel="Moderator" nzValue="moderator"></nz-option>
+      <nz-option nzLabel="Visitor" nzValue="visitor"></nz-option>
+      <nz-option nzLabel="User" nzValue="user"></nz-option>
+    </nz-select>
+  </div>
+  <div class="form-group">
+    <input nz-input type="number" placeholder="Enter phone" [(ngModel)]="newUserModel.phone" />
+  </div>
+  <div class="form-group">
+    <input nz-input type="text" placeholder="Enter city" [(ngModel)]="newUserModel.city" />
+  </div>
+  <div class="form-group">
+    <input nz-input type="text" placeholder="Enter country" [(ngModel)]="newUserModel.country" />
+  </div>
+  <button nz-button  [nzLoading]="isLoading" nzType="primary" (click)="registerUser()">Add New User</button>
+</div>

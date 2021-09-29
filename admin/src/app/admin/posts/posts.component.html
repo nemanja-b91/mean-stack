@@ -1,0 +1,36 @@
+<nz-table *ngIf="posts" #basicTable [nzFrontPagination]="false" [nzData]="posts">
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Created by</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th>Views</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>
+      <nz-space>
+        <img *nzSpaceItem nz-image height="60px" nzSrc="{{'http://localhost:3333/'+data.image}}"
+             [nzPlaceholder]="placeholder"/>
+      </nz-space>
+    </td>
+    <td>{{ data.title }}</td>
+    <td>{{ data.user }}</td>
+    <td>{{ data.updatedAt |  date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+    <td>{{ data.createdAt |  date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+    <td>{{ data.views }}</td>
+    <td>
+      <nz-button-group>
+        <a href="{{'http://localhost:6001/blog/'+data.url}}" target="_blank" class="ant-btn"><i nz-icon nzType="eye"></i></a>
+        <button nz-button nzType="primary" (click)="deletePost(data._id)" nzDanger>
+          <i nz-icon nzType="delete"></i>
+        </button>
+      </nz-button-group>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,14 @@
+<div class="container mt-4 mb-4">
+  <div class="row" *ngIf="post">
+
+    <div class="col-md-4">
+      <img src="{{'http://localhost:3333/'+post[0].image}}" style="width: 100%; max-width: 100%;" alt="">
+    </div>
+    <div class="col-md-8">
+      <h1>{{post[0].title}}</h1>
+      <p>{{post[0].content}}</p>
+      <p>{{post[0].excerpt}}</p>
+      <p>Views: {{post[0].views}}</p>
+    </div>
+  </div>
+</div>

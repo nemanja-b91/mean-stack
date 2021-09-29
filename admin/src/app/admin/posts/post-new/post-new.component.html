@@ -1,0 +1,45 @@
+<div class="new-post-wrapper">
+
+  <div nz-row>
+    <div nz-col nzFlex="4" class="left-side-container">
+      <div class="form-group">
+        <label for="title"><b>Post Title:</b></label>
+        <input nz-input name="title" id="title" placeholder="Basic usage" (input)="onTitleChange(post.title)" [(ngModel)]="post.title" />
+        <input nz-input placeholder="{{env + '/blog' + '/'}}" [(ngModel)]="post.url" nzBorderless [disabled]="true" />
+      </div>
+      <div class="form-group">
+        <label for="content"><b>Content:</b></label>
+        <angular-editor style="background-color: #fff;" [config]="editorConfig" id="content" [placeholder]="'Enter text here...'" [(ngModel)]="post.content"></angular-editor>
+      </div>
+      <div class="form-group">
+        <label for="excerpt"><b>Excerpt:</b></label>
+        <textarea rows="2" name="excerpt" id="excerpt" nz-input [(ngModel)]="post.excerpt"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="createdBy"><b>Created by:</b></label>
+        <nz-select
+          nzPlaceHolder="Select user"
+          [(ngModel)]="post.createdBy">
+          <ng-container id="createdBy" *ngFor="let user of usersList">
+            <nz-option *ngIf="!isLoading" [nzValue]="user._id" [nzLabel]="user.name"></nz-option>
+          </ng-container>
+        </nz-select>
+      </div>
+    </div>
+    <div nz-col nzFlex="2" class="right-side-container">
+      <!--Sidebar-->
+      <div class="form-group">
+        <label for="previewImage"><b>Post Image </b></label>
+        <br>
+        <input nz-input type="file" name="image" id="image" placeholder="Paste the url of the desired image" (change)="handleUpload($event)" />
+        <br>
+        <br>
+        <nz-space>
+          <img *nzSpaceItem width="300px" nz-image id="previewImage" [nzSrc]="previewImage" [nzPlaceholder]="placeholder" alt="new post image" />
+        </nz-space>
+      </div>
+      <button nz-button nzType="primary" (click)="onPostCreate()">Publish</button>
+    </div>
+  </div>
+
+</div>

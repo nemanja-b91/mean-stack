@@ -1,0 +1,5 @@
+#Default gitignore file
+
+node_modules
+#website
+.idea
